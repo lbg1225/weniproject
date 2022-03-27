@@ -1,0 +1,71 @@
+server:
+  port: 8089
+  servlet:
+    contextPath: /sample
+
+#database: h2
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  sql:
+    init: 
+      mode: always
+      schema-locations: classpath*:db/schema.sql
+      data-locations: classpath*:db/data.sql
+      #classpath*:db/${database}/schema.sql 
+      #classpath*:db/${database}/data.sql
+  datasource:
+     # driver-class-name: org.h2.Driver
+     # url: jdbc:h2:tcp://localhost/~/test
+     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+     url: jdbc:log4jdbc:h2:tcp://localhost/~/test
+     username: sa
+     password:   
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        ddl-auto: create     # create, create-drop, validate, update, none
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+          # SpringPhysicalNamingStrategy(Default)  =>  camel case를 underscore 형태로 변경
+          # PhysicalNamingStrategyStandardImpl     =>  변수 이름을 그대로 사용
+        use-new-id-generator-mappings: true
+        format_sql: true
+        use_sql_comments: true
+    generate-ddl: true
+    show_sql: true   # console sql 
+  h2:
+    console: 
+      enabled: true
+      path: /h2
+      
+logging:
+  level:
+    root: error   # trace, debug, info, warn, error, fatal
+    org:
+      hibernate:
+        type: off
+      springframework:
+        cloud: off
+        web: off
+        jdbc: off
+    
+    jdbc: 
+      connection: off
+      sqlonly: off
+      sqltiming: info
+      audit: off
+      result: off
+      resultsettable: info
+
+mybatis:  # type을 쉽게 쓰기 위해서 dto 패키지를 type-aliaes에 설정
+  type-aliases-package: com.weni.example.mybatis
+  # type-handlers-package: com.example.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30

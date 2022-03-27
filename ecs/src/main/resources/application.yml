@@ -1,0 +1,59 @@
+server:
+  port: 8081
+  servlet:
+    contextPath: /ecs
+
+#database: h2
+
+spring:
+  rest:
+
+  sql:
+    init: 
+      mode: always
+     # schema-locations: classpath*:db/schema.sql #classpath*:db/${database}/schema.sql 
+     # data-locations: classpath*:db/data.sql #classpath*:db/${database}/data.sql
+
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.0.154;databaseName=tmdb
+    username: app112
+    password: weni2022!
+    # driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    # url: jdbc:sqlserver://localhost;databaseName=tmdb
+    # username: sa
+    # password: qudrhks2!
+  #testdatasource:
+  #  driverClassName: org.h2.Driver
+  #  jdbc-url: jdbc:h2:tcp://localhost/~/test
+  #  username: sa
+  #  password: 
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none     # create, create-drop, validate, update, none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        # SpringPhysicalNamingStrategy(Default)  =>  camel case를 underscore 형태로 변경
+        # PhysicalNamingStrategyStandardImpl     =>  변수 이름을 그대로 사용
+      use-new-id-generator-mappings: false
+    generate-ddl: false
+    show_sql: true
+  h2:
+    console: 
+      enabled: true 
+      
+logging:
+  level:
+    root: error   # trace, debug, info, warn, error, fatal
+  #  org:
+  #     type: debug
+  #    springframework:
+  #      cloud: debug
+mybatis:  # type을 쉽게 쓰기 위해서 dto 패키지를 type-aliaes에 설정
+  type-aliases-package: com.weni.tms.mybatis
+  # type-handlers-package: com.example.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30

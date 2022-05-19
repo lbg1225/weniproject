@@ -1,4 +1,4 @@
-package com.sample.mybatis;
+package com.sample.mapper;
 
 // import org.apache.ibatis.annotations.Insert;
 // import org.apache.ibatis.annotations.Select;

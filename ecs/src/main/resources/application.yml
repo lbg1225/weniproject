@@ -42,7 +42,8 @@ spring:
   h2:
     console: 
       enabled: true 
-      
+
+
 logging:
   level:
     root: error   # trace, debug, info, warn, error, fatal
@@ -50,10 +51,14 @@ logging:
   #     type: debug
   #    springframework:
   #      cloud: debug
+
 mybatis:  # type을 쉽게 쓰기 위해서 dto 패키지를 type-aliaes에 설정
-  type-aliases-package: com.weni.tms.mybatis
+  type-aliases-package: com.weni.ecs.dto
+  mapper-locations: classpath:mapper/**/*.xml
+  # mapper-locations: mybatis/mapper/*.xml
   # type-handlers-package: com.example.typehandler
   configuration:
     map-underscore-to-camel-case: true
     default-fetch-size: 100
     default-statement-timeout: 30
+  

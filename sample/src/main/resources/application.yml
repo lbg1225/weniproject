@@ -63,7 +63,8 @@ logging:
       resultsettable: info
 
 mybatis:  # type을 쉽게 쓰기 위해서 dto 패키지를 type-aliaes에 설정
-  type-aliases-package: com.weni.example.mybatis
+  type-aliases-package: com.sample.dto
+  mapper-locations: classpath:mapper/**/*.xml
   # type-handlers-package: com.example.typehandler
   configuration:
     map-underscore-to-camel-case: true

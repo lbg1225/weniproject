@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weni.ecs.mapper.SIncidCardSIncidCardFireMapper">
+    <select id="getByIncidNum" parameterType="SIncidCardSIncidCardFire" resultType="SIncidCardSIncidCardFire">
+        SELECT A.RECPT_NUM, A.INCID_NUM, A.CALLER_PHONNUM, A.CALLER_FLNAME, A.INSP_FAM_NM, A.DISP_NEED_PERSN, B.AFIRE_SIZE, B.FIRE_ADD_REQ_EQU_NUMB, B.FIRE_ADDITM
+          FROM S_INCID_CARD A, 
+               S_INCID_CARD_FIRE B
+         WHERE A.RECPT_NUM = B.RECPT_NUM
+         <if test="incidNum  != null and incidNum != ''">
+           AND INCID_NUM = #{incidNum}  
+         </if>       
+    </select>
+</mapper>

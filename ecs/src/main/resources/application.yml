@@ -15,14 +15,14 @@ spring:
      # data-locations: classpath*:db/data.sql #classpath*:db/${database}/data.sql
 
   datasource:
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://192.168.0.154;databaseName=tmdb
-    username: app112
-    password: weni2022!
     # driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    # url: jdbc:sqlserver://localhost;databaseName=tmdb
-    # username: sa
-    # password: qudrhks2!
+    # url: jdbc:sqlserver://192.168.0.154;databaseName=tmdb
+    # username: app112
+    # password: weni2022!
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost;databaseName=tmdb
+    username: sa
+    password: qudrhks2!
   #testdatasource:
   #  driverClassName: org.h2.Driver
   #  jdbc-url: jdbc:h2:tcp://localhost/~/test

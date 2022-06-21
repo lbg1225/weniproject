@@ -1,9 +1,23 @@
+/** 
+* MCmncodeDtl Entity 클래스 
+
+* @author  Lee Byoung Gwan
+* @version 1.0 
+*/
 package com.weni.ecs.domain;
 import java.sql.Date;
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PostPersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.PostUpdate;
+import javax.persistence.PreRemove;
+import javax.persistence.PostRemove;
 // import org.springframework.beans.BeanUtils;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -11,61 +25,61 @@ import lombok.ToString;
 import lombok.Builder;
 
 @Entity
-@Table(name="M_CMNCODE_DTL")
+@Table(name="M_CMNCODE_DTL") //--PRIMARY
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
+@NoArgsConstructor // (access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @EqualsAndHashCode // (of = {"email","name"}, callSuper = true, onParam = @__(@NonNull))
 @ToString //(exclude = "password") // exclude 속성을 사용하면, 특정 필드를 toString() 결과에서 제외
-public class MCmncodeDtl implements Serializable {
+public class MCmncodeDtl {
     @Id //  String
-    @Column(name = "CLSSFY_DTL_CODE", nullable = false)
-    private String clssfyDtlCode;
+    @Column(name = "CLSSFY_DTL_CODE", length = 30, nullable = false)
+    private String clssfyDtlCode; //--null
 
-    @Column(name = "CLSSFY_CODE", nullable = false)
-    private String clssfyCode;
+    @Column(name = "CLSSFY_CODE", length = 20, nullable = false)
+    private String clssfyCode; //--null
 
-    @Column(name = "CLSSFY_DTL_NM", nullable = true)
-    private String clssfyDtlNm;
+    @Column(name = "CLSSFY_DTL_NM", length = 100, nullable = true)
+    private String clssfyDtlNm; //--null
 
-    @Column(name = "CLSSFY_1", nullable = true)
-    private String clssfy_1;
+    @Column(name = "CLSSFY_1", length = 30, nullable = true)
+    private String clssfy1; //--null
 
-    @Column(name = "CLSSFY_2", nullable = true)
-    private String clssfy_2;
+    @Column(name = "CLSSFY_2", length = 30, nullable = true)
+    private String clssfy2; //--null
 
-    @Column(name = "CLSSFY_3", nullable = true)
-    private String clssfy_3;
+    @Column(name = "CLSSFY_3", length = 30, nullable = true)
+    private String clssfy3; //--null
 
-    @Column(name = "FST_REGPERSN_ID", nullable = true)
-    private String fstRegpersnId;
+    @Column(name = "FST_REGPERSN_ID", length = 30, nullable = true)
+    private String fstRegpersnId; //--null
 
-    @Column(name = "FINAL_UPTPERSN_ID", nullable = true)
-    private String finalUptpersnId;
+    @Column(name = "FINAL_UPTPERSN_ID", length = 30, nullable = true)
+    private String finalUptpersnId; //--null
 
     @Column(name = "FST_REG_TM", nullable = true)
-    private Date fstRegTm;
+    private Date fstRegTm; //--null
 
     @Column(name = "FINAL_UPT_TM", nullable = true)
-    private Date finalUptTm;
+    private Date finalUptTm; //--null
 
-    @Column(name = "CLSSFY_DTL_NM_KOR", nullable = true)
-    private String clssfyDtlNmKor;
+    @Column(name = "CLSSFY_DTL_NM_KOR", length = 100, nullable = true)
+    private String clssfyDtlNmKor; //--null
 
-    @Column(name = "CLSSFY_DTL_NM_RUS", nullable = true)
-    private String clssfyDtlNmRus;
+    @Column(name = "CLSSFY_DTL_NM_RUS", length = 100, nullable = true)
+    private String clssfyDtlNmRus; //--null
 
-    @Column(name = "CLSSFY_DTL_EXP", nullable = true)
-    private String clssfyDtlExp;
+    @Column(name = "CLSSFY_DTL_EXP", length = 4000, nullable = true)
+    private String clssfyDtlExp; //--null
 
 
     @Builder
-    public MCmncodeDtl(String clssfyDtlCode, String clssfyCode, String clssfyDtlNm, String clssfy_1, String clssfy_2, String clssfy_3, String fstRegpersnId, String finalUptpersnId, Date fstRegTm, Date finalUptTm, String clssfyDtlNmKor, String clssfyDtlNmRus, String clssfyDtlExp) {
+    public MCmncodeDtl(String clssfyDtlCode, String clssfyCode, String clssfyDtlNm, String clssfy1, String clssfy2, String clssfy3, String fstRegpersnId, String finalUptpersnId, Date fstRegTm, Date finalUptTm, String clssfyDtlNmKor, String clssfyDtlNmRus, String clssfyDtlExp) {
         this.clssfyDtlCode = clssfyDtlCode;
         this.clssfyCode = clssfyCode;
         this.clssfyDtlNm = clssfyDtlNm;
-        this.clssfy_1 = clssfy_1;
-        this.clssfy_2 = clssfy_2;
-        this.clssfy_3 = clssfy_3;
+        this.clssfy1 = clssfy1;
+        this.clssfy2 = clssfy2;
+        this.clssfy3 = clssfy3;
         this.fstRegpersnId = fstRegpersnId;
         this.finalUptpersnId = finalUptpersnId;
         this.fstRegTm = fstRegTm;
@@ -75,6 +89,11 @@ public class MCmncodeDtl implements Serializable {
         this.clssfyDtlExp = clssfyDtlExp;
     }
 
+    //----------------------------------------------------
+    // Load/Persist/Update/Remove(조회/신규/수정/삭제)
+    // Entity Pre/Post(이전/이후) 처리에 대한 정의(PreLoad는 없음)
+    // * DB의 Trigger와 비슷한 JPA기능
+    //----------------------------------------------------
     @PostLoad
     public void onPostLoad() {
 
@@ -109,5 +128,6 @@ public class MCmncodeDtl implements Serializable {
     public void onPostRemove() {
 
     }
+
 }
 

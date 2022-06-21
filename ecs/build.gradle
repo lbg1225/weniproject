@@ -1,5 +1,5 @@
 plugins {
-  id 'org.springframework.boot' version '2.6.1'
+  id 'org.springframework.boot' version '2.6.3'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'org.asciidoctor.convert' version '1.5.8'
   id 'java'
@@ -25,8 +25,6 @@ ext {
 }
 
 dependencies {
-  implementation 'javax.servlet:jstl'
-  implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
   implementation 'org.springframework.boot:spring-boot-starter-actuator'
   implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -45,6 +43,9 @@ dependencies {
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.springframework.kafka:spring-kafka-test'
   testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+  implementation 'javax.servlet:jstl'
+  implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+  implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 }
 
 dependencyManagement {

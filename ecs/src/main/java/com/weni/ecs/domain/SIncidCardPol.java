@@ -1,9 +1,23 @@
+/** 
+* SIncidCardPol Entity 클래스 
+
+* @author  Lee Byoung Gwan
+* @version 1.0 
+*/
 package com.weni.ecs.domain;
 import java.sql.Date;
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PostPersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.PostUpdate;
+import javax.persistence.PreRemove;
+import javax.persistence.PostRemove;
 // import org.springframework.beans.BeanUtils;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -11,45 +25,45 @@ import lombok.ToString;
 import lombok.Builder;
 
 @Entity
-@Table(name="S_INCID_CARD_POL")
+@Table(name="S_INCID_CARD_POL") //--PRIMARY
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
+@NoArgsConstructor // (access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @EqualsAndHashCode // (of = {"email","name"}, callSuper = true, onParam = @__(@NonNull))
 @ToString //(exclude = "password") // exclude 속성을 사용하면, 특정 필드를 toString() 결과에서 제외
-public class SIncidCardPol implements Serializable {
+public class SIncidCardPol {
     @Id //  Integer
     @Column(name = "RECPT_NUM", nullable = false)
-    private Integer recptNum;
+    private Integer recptNum; //--null
 
-    @Column(name = "POL_INCIDOVIEW", nullable = true)
-    private String polIncidoview;
+    @Column(name = "POL_INCIDOVIEW", length = 4000, nullable = true)
+    private String polIncidoview; //--null
 
-    @Column(name = "POL_POSS_CRIME_TRGT", nullable = true)
-    private String polPossCrimeTrgt;
+    @Column(name = "POL_POSS_CRIME_TRGT", length = 4000, nullable = true)
+    private String polPossCrimeTrgt; //--null
 
     @Column(name = "POL_LOSSAMOUNT", nullable = true)
-    private Integer polLossamount;
+    private Integer polLossamount; //--null
 
-    @Column(name = "POL_VALUTA_CODE", nullable = true)
-    private String polValutaCode;
+    @Column(name = "POL_VALUTA_CODE", length = 30, nullable = true)
+    private String polValutaCode; //--null
 
-    @Column(name = "POL_PHYS_EVID_DESC", nullable = true)
-    private String polPhysEvidDesc;
+    @Column(name = "POL_PHYS_EVID_DESC", length = 4000, nullable = true)
+    private String polPhysEvidDesc; //--null
 
-    @Column(name = "POL_ADDITM", nullable = true)
-    private String polAdditm;
+    @Column(name = "POL_ADDITM", length = 4000, nullable = true)
+    private String polAdditm; //--null
 
-    @Column(name = "FST_REGPERSN_ID", nullable = true)
-    private String fstRegpersnId;
+    @Column(name = "FST_REGPERSN_ID", length = 30, nullable = true)
+    private String fstRegpersnId; //--null
 
-    @Column(name = "FINAL_UPTPERSN_ID", nullable = true)
-    private String finalUptpersnId;
+    @Column(name = "FINAL_UPTPERSN_ID", length = 30, nullable = true)
+    private String finalUptpersnId; //--null
 
     @Column(name = "FST_REG_TM", nullable = true)
-    private Date fstRegTm;
+    private Date fstRegTm; //--null
 
     @Column(name = "FINAL_UPT_TM", nullable = true)
-    private Date finalUptTm;
+    private Date finalUptTm; //--null
 
 
     @Builder
@@ -67,6 +81,11 @@ public class SIncidCardPol implements Serializable {
         this.finalUptTm = finalUptTm;
     }
 
+    //----------------------------------------------------
+    // Load/Persist/Update/Remove(조회/신규/수정/삭제)
+    // Entity Pre/Post(이전/이후) 처리에 대한 정의(PreLoad는 없음)
+    // * DB의 Trigger와 비슷한 JPA기능
+    //----------------------------------------------------
     @PostLoad
     public void onPostLoad() {
 
@@ -101,5 +120,6 @@ public class SIncidCardPol implements Serializable {
     public void onPostRemove() {
 
     }
+
 }
 

@@ -1,9 +1,23 @@
+/** 
+* MJurisInfo Entity 클래스 
+
+* @author  Lee Byoung Gwan
+* @version 1.0 
+*/
 package com.weni.ecs.domain;
 import java.sql.Date;
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PostPersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.PostUpdate;
+import javax.persistence.PreRemove;
+import javax.persistence.PostRemove;
 // import org.springframework.beans.BeanUtils;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -11,52 +25,52 @@ import lombok.ToString;
 import lombok.Builder;
 
 @Entity
-@Table(name="M_JURIS_INFO")
+@Table(name="M_JURIS_INFO") //--PRIMARY
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
+@NoArgsConstructor // (access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @EqualsAndHashCode // (of = {"email","name"}, callSuper = true, onParam = @__(@NonNull))
 @ToString //(exclude = "password") // exclude 속성을 사용하면, 특정 필드를 toString() 결과에서 제외
-public class MJurisInfo implements Serializable {
+public class MJurisInfo {
     @Id //  String
-    @Column(name = "JURIS_CODE", nullable = false)
-    private String jurisCode;
+    @Column(name = "JURIS_CODE", length = 20, nullable = false)
+    private String jurisCode; //--null
 
-    @Column(name = "JURIS_NM", nullable = true)
-    private String jurisNm;
+    @Column(name = "JURIS_NM", length = 300, nullable = true)
+    private String jurisNm; //--null
 
-    @Column(name = "BUSN", nullable = true)
-    private String busn;
+    @Column(name = "BUSN", length = 20, nullable = true)
+    private String busn; //--null
 
-    @Column(name = "FST_REGPERSN_ID", nullable = true)
-    private String fstRegpersnId;
+    @Column(name = "FST_REGPERSN_ID", length = 30, nullable = true)
+    private String fstRegpersnId; //--null
 
-    @Column(name = "FINAL_UPTPERSN_ID", nullable = true)
-    private String finalUptpersnId;
+    @Column(name = "FINAL_UPTPERSN_ID", length = 30, nullable = true)
+    private String finalUptpersnId; //--null
 
     @Column(name = "FST_REG_TM", nullable = true)
-    private Date fstRegTm;
+    private Date fstRegTm; //--null
 
     @Column(name = "FINAL_UPT_TM", nullable = true)
-    private Date finalUptTm;
+    private Date finalUptTm; //--null
 
-    @Column(name = "JURIS_NM_KOR", nullable = true)
-    private String jurisNmKor;
+    @Column(name = "JURIS_NM_KOR", length = 300, nullable = true)
+    private String jurisNmKor; //--null
 
-    @Column(name = "JURIS_NM_RUS", nullable = true)
-    private String jurisNmRus;
+    @Column(name = "JURIS_NM_RUS", length = 300, nullable = true)
+    private String jurisNmRus; //--null
 
     @Column(name = "LGT", nullable = true)
-    private Double lgt;
+    private Float lgt; //--null
 
     @Column(name = "LTT", nullable = true)
-    private Double ltt;
+    private Float ltt; //--null
 
-    @Column(name = "DEL_FLAG", nullable = true)
-    private String delFlag;
+    @Column(name = "DEL_FLAG", length = 1, nullable = true)
+    private String delFlag; //--null
 
 
     @Builder
-    public MJurisInfo(String jurisCode, String jurisNm, String busn, String fstRegpersnId, String finalUptpersnId, Date fstRegTm, Date finalUptTm, String jurisNmKor, String jurisNmRus, Double lgt, Double ltt, String delFlag) {
+    public MJurisInfo(String jurisCode, String jurisNm, String busn, String fstRegpersnId, String finalUptpersnId, Date fstRegTm, Date finalUptTm, String jurisNmKor, String jurisNmRus, Float lgt, Float ltt, String delFlag) {
         this.jurisCode = jurisCode;
         this.jurisNm = jurisNm;
         this.busn = busn;
@@ -71,6 +85,11 @@ public class MJurisInfo implements Serializable {
         this.delFlag = delFlag;
     }
 
+    //----------------------------------------------------
+    // Load/Persist/Update/Remove(조회/신규/수정/삭제)
+    // Entity Pre/Post(이전/이후) 처리에 대한 정의(PreLoad는 없음)
+    // * DB의 Trigger와 비슷한 JPA기능
+    //----------------------------------------------------
     @PostLoad
     public void onPostLoad() {
 
@@ -105,5 +124,6 @@ public class MJurisInfo implements Serializable {
     public void onPostRemove() {
 
     }
+
 }
 

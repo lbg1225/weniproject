@@ -21,6 +21,8 @@ spring:
     # password: weni2022!
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://localhost;databaseName=tmdb
+    #driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSp
+    #url: jdbc:log4jdbc:sqlserver://localhost;databaseName=tmdb
     username: sa
     password: qudrhks2!
   #testdatasource:
@@ -29,16 +31,19 @@ spring:
   #  username: sa
   #  password: 
   jpa:
-    open-in-view: false
-    hibernate:
-      ddl-auto: none     # create, create-drop, validate, update, none
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        # SpringPhysicalNamingStrategy(Default)  =>  camel case를 underscore 형태로 변경
-        # PhysicalNamingStrategyStandardImpl     =>  변수 이름을 그대로 사용
-      use-new-id-generator-mappings: false
+    open-in-view: true
+    properties:
+      hibernate:
+        ddl-auto: none     # create, create-drop, validate, update, none
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+          # SpringPhysicalNamingStrategy(Default)  =>  camel case를 underscore 형태로 변경
+          # PhysicalNamingStrategyStandardImpl     =>  변수 이름을 그대로 사용
+        use-new-id-generator-mappings: false
+        format_sql: true
+        use_sql_comments: true
     generate-ddl: false
-    show_sql: true
+    show_sql: false
   h2:
     console: 
       enabled: true 
@@ -47,10 +52,22 @@ spring:
 logging:
   level:
     root: error   # trace, debug, info, warn, error, fatal
-  #  org:
-  #     type: debug
-  #    springframework:
-  #      cloud: debug
+    jdbc.sqlonly: DEBUG 
+    org:
+      hibernate:
+        type: off
+      springframework:
+        cloud: off
+        web: off
+        jdbc: off
+    
+    jdbc: 
+      connection: off
+      sqlonly: off
+      sqltiming: info
+      audit: off
+      result: off
+      resultsettable: info
 
 mybatis:  # type을 쉽게 쓰기 위해서 dto 패키지를 type-aliaes에 설정
   type-aliases-package: com.weni.ecs.dto

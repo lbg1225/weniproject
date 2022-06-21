@@ -1,9 +1,23 @@
+/** 
+* SIncidCardFire Entity 클래스 
+
+* @author  Lee Byoung Gwan
+* @version 1.0 
+*/
 package com.weni.ecs.domain;
 import java.sql.Date;
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PostPersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.PostUpdate;
+import javax.persistence.PreRemove;
+import javax.persistence.PostRemove;
 // import org.springframework.beans.BeanUtils;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -11,102 +25,102 @@ import lombok.ToString;
 import lombok.Builder;
 
 @Entity
-@Table(name="S_INCID_CARD_FIRE")
+@Table(name="S_INCID_CARD_FIRE") //--PRIMARY
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
+@NoArgsConstructor // (access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @EqualsAndHashCode // (of = {"email","name"}, callSuper = true, onParam = @__(@NonNull))
 @ToString //(exclude = "password") // exclude 속성을 사용하면, 특정 필드를 toString() 결과에서 제외
-public class SIncidCardFire implements Serializable {
+public class SIncidCardFire {
     @Id //  Integer
     @Column(name = "RECPT_NUM", nullable = false)
-    private Integer recptNum;
+    private Integer recptNum; //--null
 
     @Column(name = "FIRE_FST_DISP_TM", nullable = true)
-    private Date fireFstDispTm;
+    private Date fireFstDispTm; //--null
 
     @Column(name = "FIRE_FIELD_ARRV_TM", nullable = true)
-    private Date fireFieldArrvTm;
+    private Date fireFieldArrvTm; //--null
 
     @Column(name = "FIRE_SPRAY_WAT_STRT_TM", nullable = true)
-    private Date fireSprayWatStrtTm;
+    private Date fireSprayWatStrtTm; //--null
 
-    @Column(name = "FIRE_AFIRE_TRGT_CODE", nullable = true)
-    private String fireAfireTrgtCode;
+    @Column(name = "FIRE_AFIRE_TRGT_CODE", length = 30, nullable = true)
+    private String fireAfireTrgtCode; //--null
 
-    @Column(name = "FIRE_AFIRE_SPRD_RISK_FLAG", nullable = true)
-    private String fireAfireSprdRiskFlag;
+    @Column(name = "FIRE_AFIRE_SPRD_RISK_FLAG", length = 1, nullable = true)
+    private String fireAfireSprdRiskFlag; //--null
 
-    @Column(name = "FIRE_DAMAGEPERSN_OCR_RISK_FLAG", nullable = true)
-    private String fireDamagepersnOcrRiskFlag;
+    @Column(name = "FIRE_DAMAGEPERSN_OCR_RISK_FLAG", length = 1, nullable = true)
+    private String fireDamagepersnOcrRiskFlag; //--null
 
-    @Column(name = "FIRE_BLDG_COLLAPSE_RISK_FLAG", nullable = true)
-    private String fireBldgCollapseRiskFlag;
+    @Column(name = "FIRE_BLDG_COLLAPSE_RISK_FLAG", length = 1, nullable = true)
+    private String fireBldgCollapseRiskFlag; //--null
 
     @Column(name = "FIRE_ADD_REQ_FIRECAR_NUMB", nullable = true)
-    private Integer fireAddReqFirecarNumb;
+    private Integer fireAddReqFirecarNumb; //--null
 
     @Column(name = "FIRE_ADD_REQ_FFIGHTER_NUMB", nullable = true)
-    private Integer fireAddReqFfighterNumb;
+    private Integer fireAddReqFfighterNumb; //--null
 
     @Column(name = "FIRE_ADD_REQ_EQU_NUMB", nullable = true)
-    private Integer fireAddReqEquNumb;
+    private Integer fireAddReqEquNumb; //--null
 
-    @Column(name = "FIRE_AFIRE_GRD_CODE", nullable = true)
-    private String fireAfireGrdCode;
+    @Column(name = "FIRE_AFIRE_GRD_CODE", length = 30, nullable = true)
+    private String fireAfireGrdCode; //--null
 
     @Column(name = "FIRE_L10N", nullable = true)
-    private Date fireL10n;
+    private Date fireL10n; //--null
 
     @Column(name = "FIRE_AFIRE_CLOSE_TM", nullable = true)
-    private Date fireAfireCloseTm;
+    private Date fireAfireCloseTm; //--null
 
     @Column(name = "FIRE_FIRECAR_RTN_TM", nullable = true)
-    private Date fireFirecarRtnTm;
+    private Date fireFirecarRtnTm; //--null
 
     @Column(name = "FIRE_FST_FIRECAR_NUMB", nullable = true)
-    private Integer fireFstFirecarNumb;
+    private Integer fireFstFirecarNumb; //--null
 
-    @Column(name = "FIRE_AFIRE_RESN_CODE", nullable = true)
-    private String fireAfireResnCode;
+    @Column(name = "FIRE_AFIRE_RESN_CODE", length = 30, nullable = true)
+    private String fireAfireResnCode; //--null
 
-    @Column(name = "FIRE_DISP_PTCL_VEHICLE", nullable = true)
-    private String fireDispPtclVehicle;
+    @Column(name = "FIRE_DISP_PTCL_VEHICLE", length = 200, nullable = true)
+    private String fireDispPtclVehicle; //--null
 
-    @Column(name = "FIRE_CCND_AGCY_SPRT_REQ_ITM", nullable = true)
-    private String fireCcndAgcySprtReqItm;
+    @Column(name = "FIRE_CCND_AGCY_SPRT_REQ_ITM", length = 4000, nullable = true)
+    private String fireCcndAgcySprtReqItm; //--null
 
-    @Column(name = "FIRE_LOSS_DESC", nullable = true)
-    private String fireLossDesc;
+    @Column(name = "FIRE_LOSS_DESC", length = 4000, nullable = true)
+    private String fireLossDesc; //--null
 
     @Column(name = "FIRE_LOSS_AMOUNT", nullable = true)
-    private Integer fireLossAmount;
+    private Integer fireLossAmount; //--null
 
-    @Column(name = "FIRE_THREPRT_EXCLUDE_FLAG", nullable = true)
-    private String fireThreprtExcludeFlag;
+    @Column(name = "FIRE_THREPRT_EXCLUDE_FLAG", length = 1, nullable = true)
+    private String fireThreprtExcludeFlag; //--null
 
-    @Column(name = "FIRE_LOSS_AMOUNT_EXCLUDE_FLAG", nullable = true)
-    private String fireLossAmountExcludeFlag;
+    @Column(name = "FIRE_LOSS_AMOUNT_EXCLUDE_FLAG", length = 1, nullable = true)
+    private String fireLossAmountExcludeFlag; //--null
 
-    @Column(name = "FIRE_ADDITM", nullable = true)
-    private String fireAdditm;
+    @Column(name = "FIRE_ADDITM", length = 4000, nullable = true)
+    private String fireAdditm; //--null
 
-    @Column(name = "BLDG_PROPRTR", nullable = true)
-    private String bldgProprtr;
+    @Column(name = "BLDG_PROPRTR", length = 200, nullable = true)
+    private String bldgProprtr; //--null
 
     @Column(name = "AFIRE_SIZE", nullable = true)
-    private Integer afireSize;
+    private Integer afireSize; //--null
 
-    @Column(name = "FST_REGPERSN_ID", nullable = true)
-    private String fstRegpersnId;
+    @Column(name = "FST_REGPERSN_ID", length = 30, nullable = true)
+    private String fstRegpersnId; //--null
 
-    @Column(name = "FINAL_UPTPERSN_ID", nullable = true)
-    private String finalUptpersnId;
+    @Column(name = "FINAL_UPTPERSN_ID", length = 30, nullable = true)
+    private String finalUptpersnId; //--null
 
     @Column(name = "FST_REG_TM", nullable = true)
-    private Date fstRegTm;
+    private Date fstRegTm; //--null
 
     @Column(name = "FINAL_UPT_TM", nullable = true)
-    private Date finalUptTm;
+    private Date finalUptTm; //--null
 
 
     @Builder
@@ -143,6 +157,11 @@ public class SIncidCardFire implements Serializable {
         this.finalUptTm = finalUptTm;
     }
 
+    //----------------------------------------------------
+    // Load/Persist/Update/Remove(조회/신규/수정/삭제)
+    // Entity Pre/Post(이전/이후) 처리에 대한 정의(PreLoad는 없음)
+    // * DB의 Trigger와 비슷한 JPA기능
+    //----------------------------------------------------
     @PostLoad
     public void onPostLoad() {
 
@@ -177,5 +196,6 @@ public class SIncidCardFire implements Serializable {
     public void onPostRemove() {
 
     }
+
 }
 

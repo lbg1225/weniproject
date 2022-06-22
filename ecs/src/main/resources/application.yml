@@ -19,10 +19,10 @@ spring:
     # url: jdbc:sqlserver://192.168.0.154;databaseName=tmdb
     # username: app112
     # password: weni2022!
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost;databaseName=tmdb
-    #driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSp
-    #url: jdbc:log4jdbc:sqlserver://localhost;databaseName=tmdb
+    #driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #url: jdbc:sqlserver://localhost;databaseName=tmdb
+    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:sqlserver://localhost;databaseName=tmdb
     username: sa
     password: qudrhks2!
   #testdatasource:

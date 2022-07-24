@@ -1,8 +1,8 @@
 plugins {
-  id 'org.springframework.boot' version '2.6.3'
-  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-  id 'org.asciidoctor.convert' version '1.5.8'
-  id 'java'
+	id 'org.springframework.boot' version '2.7.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.asciidoctor.convert' version '1.5.8'
+	id 'java'
 }
 
 group = 'com.weni'
@@ -21,31 +21,37 @@ repositories {
 
 ext {
   set('snippetsDir', file("build/generated-snippets"))
-  set('springCloudVersion', "2021.0.0")
+  set('springCloudVersion', "2021.0.3")
+  set('testcontainersVersion', "1.16.2")
 }
 
 dependencies {
-  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+  // -- Servlet(JSP) start --//
+  implementation 'javax.servlet:jstl'
+  implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+// -- Servlet(JSP) end   --//
   implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'
   implementation 'org.springframework.boot:spring-boot-starter-web'
-  implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
   implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
   implementation 'org.springframework.cloud:spring-cloud-stream'
   implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
   implementation 'org.springframework.kafka:spring-kafka'
-  compileOnly 'org.projectlombok:lombok'
-  developmentOnly 'org.springframework.boot:spring-boot-devtools'
   runtimeOnly 'com.h2database:h2'
   runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+  compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
+  implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.springframework.kafka:spring-kafka-test'
   testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-  implementation 'javax.servlet:jstl'
-  implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
   implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+// implementation 'org.springframework.data:spring-data-rest-hal-explorer'
+  implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+  implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 }
 
 dependencyManagement {

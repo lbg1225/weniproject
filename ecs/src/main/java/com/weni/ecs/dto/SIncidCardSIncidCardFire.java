@@ -1,9 +1,11 @@
 package com.weni.ecs.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class SIncidCardSIncidCardFire {
+@AllArgsConstructor
+public class SIncidCardSIncidCardFire implements java.io.Serializable{
     
     private Integer recptNum;
     private String incidNum;
@@ -13,5 +15,5 @@ public class SIncidCardSIncidCardFire {
     private String dispNeedPersn;
     private Integer afireSize;
     private Integer fireAddReqEquNumb;
-    private String fireAdditm;
+    private String fireAdditm;    
 }

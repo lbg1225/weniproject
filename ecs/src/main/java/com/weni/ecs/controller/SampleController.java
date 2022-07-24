@@ -1,12 +1,12 @@
 package com.weni.ecs.controller;
 
-import com.weni.ecs.dto.SIncidCardSIncidCardFire;
-import com.weni.ecs.service.SampleService;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.weni.ecs.domain.service.SampleService;
+import com.weni.ecs.dto.SIncidCardSIncidCardFire;
 
 @RestController
 public class SampleController {

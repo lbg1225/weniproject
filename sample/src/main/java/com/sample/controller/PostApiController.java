@@ -29,12 +29,12 @@ package com.sample.controller;
 
 import java.util.Map;
 
-import com.sample.dto.PostRequestDto;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sample.dto.PostRequestDto;
 
 @RestController
 @RequestMapping("/api")
